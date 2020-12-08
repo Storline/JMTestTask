@@ -18,30 +18,62 @@ public class Calculations {
             b = matcher.group(2);
             c = matcher.group(3);
 
-            int q = RomanNumeral.romanToArabic(a);
-            int w = RomanNumeral.romanToArabic(c);
 
-            if (q >= 0 && q <= 10 && w >= 0 && w <= 10) {
+            if (a.matches("\\s*[0-9]*\\s?") && c.matches("\\s*[0-9]*\\s?")) {
+
+                int q = Integer.parseInt(a);
+                int w = Integer.parseInt(c);
+
+                if (q>=0 && q<=10 && w>=0 && w<=10) {
+                    switch (b) {
+                        case "+":
+                            System.out.println(q + w);
+                            break;
+                        case "-":
+                            System.out.println(q - w);
+                            break;
+                        case "*":
+                            System.out.println(q * w);
+                            break;
+                        case "/":
+                            if (w != 0) {
+                                System.out.println(q / w);
+                            } else {
+                                System.out.println("Деление на ноль - запрещено");
+                            }
+                            break;
+                    }
+                } else {
+                    System.out.println("Введено некорректное число или операнд. Попробуйте числа от 0 до 10 или дргуой математический операнд.");
+                }
+            } else if(a.matches("\\s?[a-z]*||[A-Z]*\\s?") && c.matches("\\s?[a-z]*||[A-Z]*\\s?")){
+
+                int p = RomanNumeral.romanToArabic(a);
+                int l = RomanNumeral.romanToArabic(c);
+                int result;
+
                 switch (b) {
                     case "+":
-                        System.out.println(q + w);
+                        result = p + l;
+                        System.out.println(RomanNumeral.arabicToRoman(result));
                         break;
                     case "-":
-                        System.out.println(q - w);
+                        result = p - l;
+                        System.out.println(RomanNumeral.arabicToRoman(result));
                         break;
                     case "*":
-                        System.out.println(q * w);
+                        result = p * l;
+                        System.out.println(RomanNumeral.arabicToRoman(result));
                         break;
                     case "/":
-                        if (w != 0) {
-                            System.out.println(q / w);
+                        if (l != 0) {
+                            result = p / l;
+                            System.out.println(RomanNumeral.arabicToRoman(result));
                         } else {
                             System.out.println("Деление на ноль - запрещено");
                         }
                         break;
                 }
-            } else {
-                System.out.println("Неверный ввод. Попробуйте числа от 0 до 10 или другой математический операнд.");
             }
         }
     }
