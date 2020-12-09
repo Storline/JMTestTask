@@ -52,27 +52,31 @@ public class Calculations {
                 int l = RomanNumeral.romanToArabic(c);
                 int result;
 
-                switch (b) {
-                    case "+":
-                        result = p + l;
-                        System.out.println(RomanNumeral.arabicToRoman(result));
-                        break;
-                    case "-":
-                        result = p - l;
-                        System.out.println(RomanNumeral.arabicToRoman(result));
-                        break;
-                    case "*":
-                        result = p * l;
-                        System.out.println(RomanNumeral.arabicToRoman(result));
-                        break;
-                    case "/":
-                        if (l != 0) {
-                            result = p / l;
+                if(p>=0 && p<=10 && l>=0 && l<=10) {
+                    switch (b) {
+                        case "+":
+                            result = p + l;
                             System.out.println(RomanNumeral.arabicToRoman(result));
-                        } else {
-                            System.out.println("Деление на ноль - запрещено");
-                        }
-                        break;
+                            break;
+                        case "-":
+                            result = p - l;
+                            System.out.println(RomanNumeral.arabicToRoman(result));
+                            break;
+                        case "*":
+                            result = p * l;
+                            System.out.println(RomanNumeral.arabicToRoman(result));
+                            break;
+                        case "/":
+                            if (l != 0) {
+                                result = p / l;
+                                System.out.println(RomanNumeral.arabicToRoman(result));
+                            } else {
+                                System.out.println("Деление на ноль - запрещено");
+                            }
+                            break;
+                    }
+                } else {
+                    System.out.println("Введено некорректное число или операнд. Попробуйте римские числа от 0 до 10 или дргуой математический операнд.");
                 }
             }
         }
